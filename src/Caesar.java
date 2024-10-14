@@ -7,11 +7,13 @@ import java.util.*;
 public class Caesar {
 
     private static final String ENG = "abcdefghijklmnopqrstuvwxyz";
+    private static final String RUS = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
     private static final String SPECIAL = "!@#$%^&*()_+=-`~[]{};':\"\\|,.<>/? ";
 
-    private static final int RANGE = 25;
+    private static int RANGE = 25;
 
     private String alphabet;
+    private String language;
     private int key1;
     private int key2;
 
@@ -24,6 +26,7 @@ public class Caesar {
     private JButton decryptButton;
     private JButton bruteforceButton;
     private JButton analysisButton;
+    private JComboBox<String> alphabetSelector;
 
     public Caesar() {
         GUI();
@@ -33,7 +36,7 @@ public class Caesar {
     private void GUI() {
         frame = new JFrame("SimpleTextEncrypter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(650, 400);
+        frame.setSize(700, 400);
         frame.setLayout(new BorderLayout());
 
         JPanel inputPanel = new JPanel(new BorderLayout());
@@ -58,6 +61,16 @@ public class Caesar {
         keyField2.setText("2");
         controlPanel.add(new JLabel("Ключ 2:"));
         controlPanel.add(keyField2);
+
+        alphabetSelector = new JComboBox<>(new String[]{"ENG", "RUS"});
+        alphabetSelector.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                language = alphabetSelector.getSelectedItem().toString();
+                setAlphabet();
+            }
+        });
+        controlPanel.add(alphabetSelector);
 
         encryptButton = new JButton("Шифровать");
         encryptButton.addActionListener(new ActionListener() {
@@ -97,6 +110,17 @@ public class Caesar {
 
         frame.add(controlPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
+    }
+
+    private void setAlphabet() {
+        if (language.equals("ENG")) {
+            alphabet = ENG;
+            RANGE = 25;
+        }
+        else if (language.equals("RUS")) {
+            alphabet = RUS;
+            RANGE = 32;
+        }
     }
 
     private int validate(String keyText) {
