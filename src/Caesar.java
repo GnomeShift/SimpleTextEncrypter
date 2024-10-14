@@ -33,7 +33,7 @@ public class Caesar {
     private void GUI() {
         frame = new JFrame("SimpleTextEncrypter");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 400);
+        frame.setSize(650, 400);
         frame.setLayout(new BorderLayout());
 
         JPanel inputPanel = new JPanel(new BorderLayout());
@@ -85,6 +85,15 @@ public class Caesar {
             }
         });
         controlPanel.add(bruteforceButton);
+
+        analysisButton = new JButton("Анализ");
+        analysisButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                analysis();
+            }
+        });
+        controlPanel.add(analysisButton);
 
         frame.add(controlPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
