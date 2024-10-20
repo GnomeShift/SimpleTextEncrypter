@@ -2,7 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Caesar {
 
@@ -34,7 +35,7 @@ public class Caesar {
     }
 
     private void GUI() {
-        frame = new JFrame("SimpleTextEncrypter");
+        frame = new JFrame("Шифр Цезаря");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(700, 400);
         frame.setLayout(new BorderLayout());
@@ -256,14 +257,5 @@ public class Caesar {
         } else {
             return c;
         }
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Caesar();
-            }
-        });
     }
 }
